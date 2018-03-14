@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% block title %}
+    Продажа рекламных светодиодных LED экранов в Актобе,установка от 700 долларов за квадратный метр. Гарантия 3 года!"
+{% endblock %}
 {% block meta %}
-
+Продажа рекламных светодиодных LED экранов в Актобе,установка от 700 долларов за квадратный метр. Гарантия 3 года!,
+    led экраны, медиафасады, архитектурная подсветка, светодиодное освещение в Казахстане
 {% endblock %}
 {% block content %}
 
@@ -26,6 +30,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 	<!-- Services Block
 	================================================== -->
@@ -59,6 +65,7 @@
 	</div>
 
 
+
 	<!-- Call to Action Block
 	================================================== -->
 
@@ -72,7 +79,7 @@
 				</div>
 				<div class="col-md-3 mt-4 mt-md-0">
 					<div class="call-box-1 dark text-center text-md-right">
-						<a href="portfolio-masonry-3col.html" class="btn btn-primary btn-simple btn-round btn-long" >Бесплатная консультация</a>
+						<button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary btn-simple btn-round btn-long" >Бесплатная консультация</button>
 					</div>
 				</div>
 			</div>
@@ -167,10 +174,15 @@
                         {% for product in products %}
 						<div class="item">
 							<div class="team-box-1 background-white drop-shadow text-center">
-								<img  src="{{ product.image.url }}" alt="" />
-								<h6 class="mt-4 mb-1">{{ product.name }}</h6>
-								<p class="mb-4">{{ product.min_description }}</p>
-                                <a href="" class="btn btn-primary btn-simple btn-round btn-long">Заказать</a>
+								<img src="{{ product.img|thumbnail_url:'avatar' }}" alt="" />
+                                <a href="{% url 'stock:prodict_detail' product.id %}">
+                                    <h6 class="mt-4 mb-1">{{ product.name }}</h6>
+                                </a>
+                                <p class="mb-4">
+                                    {{ product.price|safe }}
+                                </p>
+                                <button type="button" data-toggle="modal" data-target="#product-{{ product.id }}" class="btn btn-primary btn-simple btn-round btn-long">Заказать</button><br><br>
+                                <a href="{% url 'stock:prodict_detail' product.id %}" class="btn btn-primary btn-simple btn-round btn-long">Подробнее</a>
 							</div>
 						</div>
                         {% endfor %}
@@ -179,6 +191,45 @@
 			</div>
 		</div>
 	</div>
+
+
+    {% for product in products %}
+    <!-- Modal -->
+    <div class="modal fade" id="product-{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Заказать</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+         <form id="form" method="post" class="order-form">
+             {% csrf_token %}
+          <div class="modal-body">
+              <div class="form-group">
+                  <select class="form-control" name="product" id="">
+                    <option value="{{ product.id }}">{{ product.name }}</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Ваше имя</label>
+                <input name="name" type="text" class="form-control" placeholder="Ваше имя">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Ваш Тел.номер</label>
+                <input name="phone" type="tel" class="form-control" placeholder="Тел">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Заказать звонок</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
 
 	<!-- Progress Bars Block
 	================================================== -->
@@ -189,7 +240,7 @@
 				<div class="col-md-5">
 					<h4 class="color-white">О НАС В ЦИФРАХ</h4>
                     <h5 class="color-white">Немного статистики и фактов.</h5>
-					<a href="contact-planner.html" class="btn btn-primary btn-round btn-simple mt-4" >Заказать звонок</a>
+                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter"  class="btn btn-primary btn-round btn-simple mt-4" >Заказать звонок</button>
 				</div>
 				<div class="col-md-7 mt-5 mt-md-0" id="progress">
 					<div class="progress-container">
@@ -264,7 +315,7 @@
             {% for work in works %}
 			<div class="grid-box float-inline third with-margin branding">
                 <div class="portfolio-box-1 rounded">
-                    <img  src="{{ work.photo.url }}" alt="" />
+                    <img src="{{ work.photo|thumbnail_url:'work' }}" alt="" />
                     <div class="portfolio-mask-1"></div>
                     <h5>{{ work.name }}</h5>
                     <p>{{ work.description }}</p>
@@ -286,19 +337,93 @@
 				<div class="col-md-12">
 					<div class="call-box-2 text-center">
 						<h2 class="color-white mb-3">Хотите узнать больше о нас?</h2>
-						<a href="contact-planner.html" class="btn btn-primary btn-simple btn-round btn-long mt-5 scroll">Заказать звонок</a>
+						<button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary btn-simple btn-round btn-long mt-5 scroll">Заказать звонок</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-    {% if sended == False %}
-    {% endif %}
-{#{% for product in products %}#}
+
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Заказать звонок</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+         <form id="form contact_form" action="" method="post">
+             {% csrf_token %}
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Ваше имя</label>
+                <input type="text" name="name" class="form-control" placeholder="Ваше имя">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Ваш Тел.номер</label>
+                <input type="tel"  name="telephone" class="form-control" placeholder="Тел">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Заказать звонок</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+{#    {% else %}#}
+{#        <div class="alert modal fade alert-info alert-dismissible show" tabindex="-1" role="alert">#}
+{#            <button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+{#                <span aria-hidden="true"><i class="funky-ui-icon icon-Close"></i></span>#}
+{#            </button>#}
+{#           <h5>Спасибо. Ваша заявка принята.</h5>#}
+{#        </div>#}
+{#     {% endif %}#}
 {##}
-{#{% endfor %}#}
+    {% if sended %}
+         <div class="alert modal fade show" id="exampleModalCenter1" tabindex="-3" role="alert">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-tab-primary">
+              <div class="modal-header">
+                <h5 class="modal-title color-white" id="exampleModalLongTitle">Спасибо! Ваша заявка принята</h5>
+                <button type="button" class="close color-white" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+         </div>
+    {% endif %}
+
+
+
 {% endblock %}
 
 {% block script %}
+<script>
+$(document).ready(function(){
+    $("#form").submit(function() { //
+     var formNm = $(this);
+     $.ajax({
+     type: "POST",
+     url: '',
+     data: formNm.serialize(),
+     success: function (data) {
+     // Вывод текста результата отправки
+     $(formNm).html(data);
+     },
+     error: function (jqXHR, text, error) {
+     // Вывод текста ошибки отправки
+     $(formNm).html(error);
+     }
+     });
+     return false;
+     });
+    });
+
+ </script>
 {% endblock %}

@@ -5552,7 +5552,7 @@ button.close {
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 500px;
-    margin: 30px auto;
+    margin: 130px auto;
   }
   .modal-sm {
     max-width: 300px;

@@ -11,8 +11,8 @@ class Page(models.Model):
     description = models.TextField(verbose_name='описание', default=None, blank=True)
 
     class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
+        verbose_name = 'Страница'
+        verbose_name_plural = 'Страницы'
         ordering = ['name']
 
     def __str__(self):
@@ -35,6 +35,6 @@ class Work(models.Model):
 
 @receiver(post_delete, sender=Work)
 def photo_post_delete_handler(sender, **kwargs):
-    photo = kwargs['instance']
-    storage, path = photo.image.storage, photo.image.path
+    work = kwargs['instance']
+    storage, path = work.photo.storage, work.photo.path
     storage.delete(path)

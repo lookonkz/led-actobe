@@ -12,7 +12,9 @@ class PhotoInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'min_description',]
+    list_display = ['name', 'description', 'price']
     inlines = [PhotoInline]
+
+
 
 
