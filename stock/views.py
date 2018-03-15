@@ -1,12 +1,10 @@
-from django.shortcuts import render, get_object_or_404, resolve_url
+from django.shortcuts import render, get_object_or_404
 from .models import Product
 from .forms import ContactForm
-from orders.forms import OrderForm, OrderForm1
+from orders.forms import OrderForm
 from django.http import HttpResponseRedirect
-from django.urls import reverse
 from static_pages.models import Work
-from django.views.generic.base import TemplateView
-from django.views.decorators.http import require_http_methods
+import telebot
 
 
 def home(request):
@@ -16,15 +14,19 @@ def home(request):
     form1 = OrderForm(request.POST)
 
     if request.method == "POST":
-        print(request.POST)
+        bot = telebot.TeleBot('465058783:AAEJz6kcmZaVx0QPJrt7YGj-3wNXtBzOiXM')
+        chat_id = '-223188240'
+
         if form.is_valid():
-            print('hello')
-            form = ContactForm(request.POST)
+            text = 'Заявка на консультацию' '\n' + 'имя: ' + request.POST.get('name') + '\n' + 'телфон: ' + request.POST.get('telephone') + ''
             form.save()
-            return HttpResponseRedirect("?sended=true")
+            return HttpResponseRedirect("?sended=true", bot.send_message(chat_id, text))
         elif form1.is_valid():
+            product = get_object_or_404(Product, pk=request.POST.get('product'))
+            text = 'Заявка на товар' '\n' + 'имя: ' + request.POST.get('name') + '\n' + 'телфон: ' \
+                   + request.POST.get('phone') + '\n' + 'товар: ' + product.name
             form1.save()
-            return HttpResponseRedirect("?sended=true")
+            return HttpResponseRedirect("?sended=true", bot.send_message(chat_id, text))
         else:
             print(form.errors)
 
@@ -37,12 +39,15 @@ def home(request):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     form = OrderForm(request.POST)
+    bot = telebot.TeleBot('465058783:AAEJz6kcmZaVx0QPJrt7YGj-3wNXtBzOiXM')
+    chat_id = '-223188240'
 
     if request.method == "POST":
         if form.is_valid():
-            print('прошло')
+            text = 'Заявка на товар' '\n' + 'имя: ' + request.POST.get('name') + '\n' + 'телфон: ' \
+                   + request.POST.get('phone') + '\n' + 'товар: ' + product.name
             form.save()
-            return HttpResponseRedirect("?sended=true")
+            return HttpResponseRedirect("?sended=true", bot.send_message(chat_id, text))
 
     return render(request, "stock/product__detail.html", {
         "product": product,
@@ -52,12 +57,16 @@ def product_detail(request, product_id):
 
 
 def contact(request):
-    form = OrderForm
+    form = ContactForm(request.POST)
+    bot = telebot.TeleBot('465058783:AAEJz6kcmZaVx0QPJrt7YGj-3wNXtBzOiXM')
+    chat_id = '-223188240'
 
     if request.method == "POST":
         if form.is_valid():
+            text = 'Заявка на консультацию' '\n' + 'имя: ' + request.POST.get(
+                'name') + '\n' + 'телфон: ' + request.POST.get('telephone') + ''
             form.save()
-            return HttpResponseRedirect("{}?sended=true")
+            return HttpResponseRedirect("?sended=true", bot.send_message(chat_id, text))
 
     return render(request, "stock/contact.html", {
         "form": form,

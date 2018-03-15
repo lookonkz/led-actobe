@@ -68,7 +68,8 @@
 				<div class="col-lg-4 mt-4 mt-lg-0 mt-xl-4" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s" data-scroll-reveal-id="4" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
 					<div class="call-box-5 dark">
 						<h4 class="color-white">LEDvAktobe.kz</h4>
-						<p class="mt-3 mb-5">Продажа рекламных светодиодных LED экранов в Актобе,установка от 700 долларов за квадратный метр. Гарантия 3 года!</p>
+						<p class="mb-5">Продажа рекламных светодиодных LED экранов в Актобе,установка от 700 долларов за квадратный метр. Гарантия 3 года!</p>
+                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary btn-simple btn-round btn-long scroll">Заказать звонок</button>
 					</div>
 				</div>
 			</div>
@@ -76,10 +77,39 @@
 	</div>
 
 
-
-
 	<!-- Block
 	================================================== -->
+
+
+          <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Заказать звонок</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+         <form id="form contact_form" action="" method="post">
+             {% csrf_token %}
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Ваше имя</label>
+                <input type="text" name="name" class="form-control" placeholder="Ваше имя">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Ваш Тел.номер</label>
+                <input type="tel"  name="telephone" class="form-control" placeholder="Тел">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Заказать звонок</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
 	{% endblock %}
@@ -87,4 +117,26 @@
     {% block script %}
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvpnlHRidMIU374bKM5-sx8ruc01OvDjI"></script>
         <script type="text/javascript" src="{% static 'js/custom/custom-contact-split.js' %}"></script>
+        <script>
+            $(document).ready(function(){
+                $("#form").submit(function() { //
+                 var formNm = $(this);
+                 $.ajax({
+                 type: "POST",
+                 url: '',
+                 data: formNm.serialize(),
+                 success: function (data) {
+                 // Вывод текста результата отправки
+                 $(formNm).html(data);
+                 },
+                 error: function (jqXHR, text, error) {
+                 // Вывод текста ошибки отправки
+                 $(formNm).html(error);
+                 }
+                 });
+                 return false;
+                 });
+                });
+
+         </script>
     {% endblock %}
