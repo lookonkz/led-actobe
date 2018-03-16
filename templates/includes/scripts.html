@@ -6,6 +6,12 @@
 <script type="text/javascript" src="{% static 'js/tether.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
-{#<script type="text/javascript" src="{% static 'js/custom/custom-personal-portfolio.js' %}"></script>#}
+<script type="text/javascript" src="{% static 'js/g/jquery.maskedinput.min.js' %}"></script>
+<script type="text/javascript">
+
+    jQuery(function($){
+    $("#phone").mask("+7 (999) 999-9999");
+    });
+</script>
 
 

@@ -56,7 +56,19 @@
 	
 	$(document).ready(function() {
 	
-	
+		/* Work Carousel */
+
+		$("#owl-work").owlCarousel({
+			items : 3,
+			itemsDesktop : [1350,2],
+			itemsDesktopSmall : [1000,2],
+			itemsTablet: [768,1],
+			itemsMobile : false,
+			pagination : true,
+			autoPlay : 8000,
+			slideSpeed : 300
+		});
+
 		/* Scroll Too */
 	
 		$(".scroll").on('click', function(event){

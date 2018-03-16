@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+   {{ page.name }}
+{% endblock %}
+{% block meta %}
+ {{ page.name }}
+{% endblock %}
+{% block content %}
+
+	<!-- Hero Slider Block
+	================================================== -->
+
+	<div class="section big-height" style="height: 85vh;">
+		<div class="parallax" style="background-image: url('{% static 'img/bagraund_main.jpg'%}')"></div>
+		<div class="light-fade-over-2"></div>
+		<div class="hero-center-wrap z-bigger">
+			<div class="container hero-text parallax-fade-top">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="typed" style="color: #fff">{{ page.name }}</h2><br>
+                        <a href="#scroll-top1" class="btn btn-primary btn-simple btn-round btn-long mt-5 scroll" >Посмотерть</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="scroll-top1" class="section padding-top-bottom background-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>{{ page.description|safe }}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

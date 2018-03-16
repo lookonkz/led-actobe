@@ -2,17 +2,20 @@
 <div id="menu-wrap" class="cbp-af-header black-menu-background-1st-trans menu-fixed-padding-small menu-shadow">
     <div class="container nav-top-bar">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <p><i class="fa fa-clock-o mr-1"></i> Пн - Пт: 09.00 - 18.00
-                    <a href="tel:87172341887"><i class="fa fa-phone ml-2 mr-1"></i>
-                        +7 7172 341 887
+                    <a href="tel:87132998475"><i class="fa fa-phone ml-2 mr-1"></i>
+                        +7 (7132) 99-84-75
+                    </a>
+                    <a href="tel:87025323608"><i class="fa fa-phone ml-2 mr-1"></i>
+                        +7 (702) 532-36-08
                     </a>
                     <a href="mailto:Ali_kaimuldin@mail.ru">
                         <i class="fa fa-comment-o ml-2 mr-1"></i> Ali_kaimuldin@mail.ru
                     </a>
                 </p>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-3">
                 <p class="right">
                    <a class="right" href="https://yandex.kz/maps/-/CBeDu-rV3D"><i class="fa fa-address-card ml-2 mr-1"></i>г.Актобе ул.АзНаурыза 100/186</a>
                 </p>
@@ -52,6 +55,14 @@
                                     Контакты
                                 </a>
                             </li>
+
+                            {% for page in pages %}
+                            <li class="nav-item  mega-menu">
+                                <a class="nav-link" href="{% url 'static_pages:page' page.slug  %}">
+                                    {{ page.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </nav>

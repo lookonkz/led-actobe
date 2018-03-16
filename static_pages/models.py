@@ -2,13 +2,13 @@ from django.db import models
 from easy_thumbnails.fields import ThumbnailerImageField
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 class Page(models.Model):
     name = models.CharField(verbose_name='название', max_length=200, blank=True)
     slug = models.SlugField('название к сылке')
-    description = models.TextField(verbose_name='описание', default=None, blank=True)
+    description = RichTextUploadingField(verbose_name='описание',config_name='default', default=None, blank=True)
 
     class Meta:
         verbose_name = 'Страница'

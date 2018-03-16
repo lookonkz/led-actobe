@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('stock.urls', namespace='stock')),
+    path('', include('static_pages.urls', namespace='static_pages')),
     # path('cart/', include('cart.urls', namespace='cart')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]\
