@@ -3486,7 +3486,7 @@ figure.vimeo a img, figure.youtube a img {
 }
 #menu-wrap .navbar-brand img{
     display: block;
-	max-height: 22px;
+	max-height: 34px;
 	width: auto;
 	-webkit-transition : all 0.3s ease-out;
 	-moz-transition : all 0.3s ease-out;
