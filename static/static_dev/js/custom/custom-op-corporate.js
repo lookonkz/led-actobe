@@ -84,6 +84,32 @@
 			$('html, body').animate({scrollTop:target_top}, 800);
 		});
 
+
+		/* Testimonials Carousel */
+
+		$("#owl-testimonials").owlCarousel({
+			items : 3,
+			itemsDesktop : [800,2],
+			itemsDesktopSmall : [800,1],
+			itemsTablet: [600,1],
+			itemsMobile : false,
+			pagination : false,
+			autoPlay : 3000,
+			slideSpeed : 300
+		});
+		(function ($) {
+			var owl = $("#owl-testimonials");
+			owl.owlCarousel();
+
+			// Custom Navigation Events
+			$(".next-testimonials").click(function(){
+				owl.trigger('owl.next');
+			})
+			$(".prev-testimonials").click(function(){
+				owl.trigger('owl.prev');
+			})
+		} )(jQuery);
+
 			
 		//Scroll back to top
 	

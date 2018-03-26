@@ -3221,6 +3221,12 @@ figure.vimeo a img, figure.youtube a img {
 	padding-top:120px;
 	padding-bottom:120px;
 }
+
+.padding-top-bottom1 {
+	padding-top:37px;
+	padding-bottom:0px;
+}
+
 .padding-top {
 	padding-top:120px;
 }
@@ -3397,10 +3403,22 @@ figure.vimeo a img, figure.youtube a img {
 	height:100%;
 	top:0;
 	left:0;
-	background-color:#323232;
+	background-color:#000000;
 	opacity:.7;
 	z-index:300;
 }
+
+.grey-fade-over1{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	background-color:rgba(0, 0, 0, 0.81);
+	opacity:.7;
+	z-index:300;
+}
+
 .grey-fade-over-2{
 	position:absolute;
 	width:100%;

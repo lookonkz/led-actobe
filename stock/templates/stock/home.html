@@ -3,10 +3,12 @@
 {% load thumbnail %}
 {% block title %}
     Продажа рекламных светодиодных LED экранов в Актобе,установка от 700 долларов за квадратный метр. Гарантия 3 года!"
+
 {% endblock %}
 {% block meta %}
 Продажа рекламных светодиодных LED экранов в Актобе,установка от 700 долларов за квадратный метр. Гарантия 3 года!,
-    led экраны, медиафасады, архитектурная подсветка, светодиодное освещение в Казахстане
+    led экраны, медиафасады, архитектурная подсветка, светодиодное освещение в Казахстане,
+    Продажа и монтаж внутренних и наружных светодиодных экранов адаптированные специально под ваш запрос!
 {% endblock %}
 {% block content %}
 
@@ -23,7 +25,8 @@
 				<div class="row">
 					<div class="col-md-7">
 						<h2 class="typed" style="color: #fff"><span id="typed-1"></span></h2>
-						<div class="subtext mt-3" style="color: #fff">Качественное оборудование, монтаж и сервис от профессионалов!</div>
+						<div class="subtext mt-3" style="color: #fff">Продажа и монтаж внутренних и наружных светодиодных экранов адаптированные специально под ваш запрос!<br>
+                            Качественное оборудование, монтаж и сервис от профессионалов!</div>
 						<a href="#scroll-top1" class="btn btn-primary btn-simple btn-round btn-long mt-5 scroll" >Посмотерть</a>
 					</div>
                     <div class="col-md-5 text-center">
@@ -78,7 +81,7 @@
 				</div>
 				<div class="col-md-4 transform-y-120 mt-4 mt-md-0">
 					<div class="services-box-1 background-dark drop-shadow">
-						<i class="funky-ui-icon icon-Medal"></i>
+						<i class="funky-ui-icon icon-Diploma-2"></i>
 						<h5 class="color-white mt-3">Гарантия</h5>
 						<p class="mt-3">3 года гарантии</p>
 					</div>
@@ -166,7 +169,7 @@
 	<!-- Title Block With Parallax Background Image
 	================================================== -->
 
-	<div id="scroll-top1" class="section padding-top-bottom over-hide" >
+	<div id="scroll-top1" class="section padding-top-bottom1 over-hide" >
 		<div class="parallax-1" style="background-image: url('{% static 'img/parallax-21.jpg' %}')"></div>
 		<div class="grey-fade-over"></div>
 		<div class="container z-bigger">
@@ -202,7 +205,7 @@
                         <div class="item text-center">
                             <div class="background-white drop-shadow">
                                 <img src="{{ product.img|thumbnail_url:'avatar' }}" alt=""  style="width: 100%"/>
-                                <a href="post.html"><h5>{{ product.name }}</h5></a>
+                                <a href="{% url 'stock:prodict_detail' product.id %}"><h5>{{ product.name }}</h5></a>
                                 <p class="mt-3 col-md-11">
                                     {{ product.price|safe }}
                                 </p>
@@ -222,37 +225,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-{#	<div class="section background-grey z-bigger-2">#}
-{#		<div class="container">#}
-{#			<div class="row transform-y-120 transform-on-mob">#}
-{#				<div class="team-slider-wrap mb-4">#}
-{#					<div id="owl-team" class="owl-carousel owl-theme">#}
-{#                        {% for product in products %}#}
-{#						<div class="item">#}
-{#							<div class="team-box-1 background-white drop-shadow text-center">#}
-{#								<img src="{{ product.img|thumbnail_url:'avatar' }}" alt="" />#}
-{#                                <a href="{% url 'stock:prodict_detail' product.id %}">#}
-{#                                    <h6 class="mt-4 mb-1">{{ product.name }}</h6>#}
-{#                                </a>#}
-{#                                <p class="mb-4">#}
-{#                                    {{ product.price|safe }}#}
-{#                                </p>#}
-{#                                <button type="button" data-toggle="modal" data-target="#product-{{ product.id }}" class="btn btn-primary btn-simple btn-round btn-long">Заказать</button><br><br>#}
-{#                                <a href="{% url 'stock:prodict_detail' product.id %}" class="btn btn-primary btn-simple btn-round btn-long">Подробнее</a>#}
-{#							</div>#}
-{#						</div>#}
-{#                        {% endfor %}#}
-{#					</div>#}
-{#				</div>#}
-{#			</div>#}
-{#		</div>#}
-{#	</div>#}
 
 
     {% for product in products %}
@@ -308,8 +280,8 @@
 					<div class="progress-container">
 						<span class="progress-badge dark">Мы на рынке (лет)</span>
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="11" style="width: 87%;">
-								<span class="progress-value"><span class="counter">10 </span></span>
+							<div class="progress-bar" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="12" style="width: 87%;">
+								<span class="progress-value"><span class="counter">11 </span></span>
 							</div>
 						</div>
 					</div>
@@ -375,56 +347,50 @@
 		</div>
     </div>
 
-    <!-- Work Block
-	================================================== -->
-
-{#    <div class="section padding-top-bottom background-white z-bigger-2">#}
-{#        <div class="container-fluid px-4">#}
-{#			<div class="row">#}
-{#				<div id="aniimated-thumbnials" class="grid-wraper clearfix">#}
-{#                    {% for work in works %}#}
-{#					<div class="grid-box float-inline third with-margin photo motion">#}
-{#						<a href="{{ work.photo.url}}">#}
-{#							<div class="portfolio-box-1 rounded">#}
-{#								<img  src="{{ work.photo|thumbnail_url:'work' }}" alt="{{ work.name }}" />#}
-{#                                <a href="{{ work.photo.url}}">#}
-{#                                    <div class="portfolio-mask-3 rounded"></div>#}
-{#                                    <h5 class="on-center text-center">{{ work.name }}</h5>#}
-{#                                    <p class="on-center text-center">{{ work.description }}</p>#}
-{#                                </a>#}
-{#							</div>#}
-{#						</a>#}
+{#	<div class="section background-white z-bigger">#}
+{#		<div class="container-fluid">#}
+{#			<div class="row transform-y-120 transform-on-mob">#}
+{#				<div class="work-slider-wrap mb-4" id="">#}
+{#					<div id="owl-work" class="owl-carousel owl-theme">#}
+{#                        {% for work in works %}#}
+{#						<div class="item">#}
+{#							<a href="">#}
+{#								<div class="portfolio-box-1 dark rounded">#}
+{#									<img  src="{{ work.photo|thumbnail_url:'work' }}" alt="" />#}
+{#									<div class="portfolio-mask-2 rounded"></div>#}
+{#									<h5 class="on-center text-center">{{ work.name }}</h5>#}
+{#									<p class="on-center text-center">{{ work.description }}</p>#}
+{#								</div>#}
+{#							</a>#}
+{#						</div>#}
+{#                        {% endfor %}#}
 {#					</div>#}
-{#                    {% endfor %}#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</div>#}
 
-
-
-	<div class="section background-white z-bigger">
-		<div class="container-fluid">
-			<div class="row transform-y-120 transform-on-mob">
-				<div class="work-slider-wrap mb-4" id="">
-					<div id="owl-work" class="owl-carousel owl-theme">
-                        {% for work in works %}
-						<div class="item">
-							<a href="">
-								<div class="portfolio-box-1 dark rounded">
-									<img  src="{{ work.photo|thumbnail_url:'work' }}" alt="" />
-									<div class="portfolio-mask-2 rounded"></div>
-									<h5 class="on-center text-center">{{ work.name }}</h5>
-									<p class="on-center text-center">{{ work.description }}</p>
-								</div>
-							</a>
-						</div>
-                        {% endfor %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="section padding-top-bottom over-hide">
+        <div class=" z-bigger" style="padding-right: 42px;
+padding-left: 42px;">
+            <div class="row transform-y-120 transform-on-mob">
+                <div class="customNavigation">
+                    <a class="prev-testimonials"><i class="fa fa-angle-left"></i></a>
+                    <a class="next-testimonials"><i class="fa fa-angle-right"></i></a>
+                </div>
+                <div id="owl-testimonials" class="owl-carousel owl-theme">
+                     {% for work in works %}
+                    <div class="item">
+                        <div class="testimonials-box-1 background-on-dark dark" style="background-image: url('{{ work.photo|thumbnail_url:'work' }}'); height: 500px; ">
+{#                            <p class="mt-4 mb-5">{{ work.description }}</p>#}
+{#                            <h6>{{ work.name }}</h6>#}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -433,8 +399,8 @@
 	<!-- Call To Action Block
 	================================================== -->
 
-	<div class="section padding-top-bottom background-image-cover over-hide" style="background-image: url('{% static 'img/back-image.jpg' %}')">
-		<div class="grey-fade-over"></div>
+	<div class="section padding-top-bottom over-hide" style="background-image: url('{% static 'img/hero-block.gif' %}');">
+		<div class="grey-fade-over1"></div>
 		<div class="container z-bigger">
 			<div class="row">
 				<div class="col-md-12">
@@ -563,6 +529,7 @@ $(document).ready(function(){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script type="text/javascript" src="{% static 'js/g/lightgallery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/g/lightgallery-all.min.js' %}"></script>
+
      <script type="text/javascript" >
       $('#aniimated-thumbnials').lightGallery({
           thumbnail:true,
