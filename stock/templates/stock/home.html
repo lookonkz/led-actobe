@@ -11,10 +11,7 @@
     Продажа и монтаж внутренних и наружных светодиодных экранов адаптированные специально под ваш запрос!
 {% endblock %}
 {% block content %}
-
-
-
-	<!-- Hero Slider Block
+    <!-- Hero Slider Block
 	================================================== -->
 
 	<div class="section big-height">
@@ -169,7 +166,7 @@
 	<!-- Title Block With Parallax Background Image
 	================================================== -->
 
-	<div id="scroll-top1" class="section padding-top-bottom1 over-hide" >
+	<div class="section padding-top-bottom1 over-hide" >
 		<div class="parallax-1" style="background-image: url('{% static 'img/parallax-21.jpg' %}')"></div>
 		<div class="grey-fade-over"></div>
 		<div class="container z-bigger">
@@ -191,7 +188,7 @@
 
 	<!-- Team Block
 	================================================== -->
-    <div class="section padding-top-bottom background-grey over-hide" style="padding-top: 70px;">
+    <div id="scroll-top1" class="section padding-top-bottom background-grey over-hide" style="padding-top: 70px;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="clear"></div>
@@ -380,8 +377,8 @@ padding-left: 42px;">
                 </div>
                 <div id="owl-testimonials" class="owl-carousel owl-theme">
                      {% for work in works %}
-                    <div class="item">
-                        <div class="testimonials-box-1 background-on-dark dark" style="background-image: url('{{ work.photo|thumbnail_url:'work' }}'); height: 500px; ">
+                    <div class="item" style="">
+                        <div class="testimonials-box-1" style="background-image: url('{{ work.photo|thumbnail_url:'work' }}'); height: 500px; background-position: center; background-size: auto ">
 {#                            <p class="mt-4 mb-5">{{ work.description }}</p>#}
 {#                            <h6>{{ work.name }}</h6>#}
                         </div>
@@ -513,7 +510,7 @@ $(document).ready(function(){
      data: formNm.serialize(),
      success: function (data) {
      // Вывод текста результата отправки
-     $(formNm).html(data);
+     $(formNm).html('<h4>Спасибо за зявку!</h4>');
      },
      error: function (jqXHR, text, error) {
      // Вывод текста ошибки отправки

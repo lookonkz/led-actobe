@@ -88,7 +88,7 @@
 		/* Testimonials Carousel */
 
 		$("#owl-testimonials").owlCarousel({
-			items : 3,
+			items : 2,
 			itemsDesktop : [800,2],
 			itemsDesktopSmall : [800,1],
 			itemsTablet: [600,1],

@@ -8,31 +8,43 @@
     {{ product.description }}
 {% endblock %}
 {% block content %}
-<div class="section padding-top-bottom background-dark over-hide">
-    <div class="container">
-        <div class="row">
-            <div class="clear"></div>
-            <br><br><br><br>
-            <div class="col-lg-8 mt-lg-5 mt-xl-0">
-                <div class="video-section">
-                    <figure class="vimeo rounded-2 img-raised over-hide">
-                        <img src="{{ product.img.url }}" alt="{{ product.name }}" class="rounded-2 over-hide">
-                    </figure>
+    <div class="section small-height padding-top-bottom">
+		<div class="parallax  background-dark over-hide" ></div>
+		<div class="light-fade-over-2"></div>
+		<div class="hero-center-wrap z-bigger">
+			<div class="container hero-text parallax-fade-top">
+				<div class="row">
+                    <div class="col-md-12">
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="section padding-top-bottom background-dark over-hide">
+        <div class="container">
+            <div class="row">
+                <div class="clear"></div>
+                <br><br><br><br>
+                <div class="col-lg-8 col-md-8 mt-lg-5 mt-xl-0">
+                    <img src="{{ product.img.url }}" alt="{{ product.name }}" class="rounded-2 over-hide col-lg-12 col-md-12 mt-lg-5 mt-xl-0" style="height: 100%; width: auto">
                 </div>
-            </div>
-            <div class="col-lg-4 mt-4 mt-lg-0 mt-xl-4" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s" data-scroll-reveal-id="4" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                <div class="call-box-5 dark">
-                    <h4 class="color-white">{{ product.name }}</h4>
-                    <p class="mt-3 mb-5">{{ product.description|safe }}</p><br>
-                    <p class="mt-3 mb-5">{{ product.price|safe }}</p><br>
-                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary btn-simple btn-round btn-long">Заказать</button>
+                <div class="col-lg-4 mt-4 mt-lg-0" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s" data-scroll-reveal-id="4" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
+                    <div class="call-box-5 dark">
+                        <h4 class="color-white">{{ product.name }}</h4>
+                        <p class="mt-3 mb-5">{{ product.description|safe }}</p><br>
+                        <p class="mt-3 mb-5">{{ product.price|safe }}</p><br>
+                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter1" class="btn btn-primary btn-simple btn-round btn-long">Заказать</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+
+
+     <div class="modal fade" id="exampleModalCenter1" tabindex="-2" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -65,9 +77,9 @@
         </div>
       </div>
     </div>
-    {% if sended %}
 
-    {% endif %}
+
+
 
 
 
@@ -83,11 +95,11 @@ $(document).ready(function(){
      data: formNm.serialize(),
      success: function (data) {
      // Вывод текста результата отправки
-     $(formNm).html(data);
+     $(formNm).html('<h4>Спасибо за зявку!</h4>');
      },
      error: function (jqXHR, text, error) {
      // Вывод текста ошибки отправки
-     $(formNm).html(error);
+     $(formNm).html('<h4>Спасибо за зявку!</h4>');
      }
      });
      return false;
